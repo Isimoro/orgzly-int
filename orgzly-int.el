@@ -12,7 +12,7 @@
 
 
 (defun orgzly-int/org-refile-to-datetree (&optional file)
-  "Refile a subtree to a datetree corresponding to it's timestamp.
+  "Refile current subtree to a datetree in FILE corresponding to it's timestamp.
 
 The current time is used if the entry has no timestamp. If FILE
 is nil, refile in the current file."
@@ -33,9 +33,8 @@ is nil, refile in the current file."
 
 
 (defun orgzly-int/org-refile-all-to-date-tree (source target)
-  "Takes two org files as arguments. Refiles all entries from
+  "Takes two org files as arguments. Refiles all subtrees from
 SOURCE into a datetree in TARGET"
-
     (with-current-buffer (find-file-noselect source)
       (org-map-entries (lambda ()
                          (orgzly-int/org-refile-to-datetree target)
@@ -47,7 +46,6 @@ SOURCE into a datetree in TARGET"
 (defun orgzly-int/org-sync-journal ()
   "Takes all entries from `orgzly-int-org-inbox-file' and refiles
 them into a datetree in `orgzly-int-org-journal-file'"
-
   (interactive)
   (orgzly-int/org-refile-all-to-date-tree
    orgzly-int-org-inbox-file
