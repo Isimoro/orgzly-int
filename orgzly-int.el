@@ -53,6 +53,9 @@ them into a datetree in `orgzly-int-org-journal-file'"
   (with-current-buffer
       (find-file-noselect orgzly-int-org-journal-file)
     (fill-flowed-fill-buffer)
+    (save-buffer))
+  (with-current-buffer
+      (find-file-noselect orgzly-int-org-inbox-file)
     (save-buffer)))
 
 (provide 'orgzly-int)
