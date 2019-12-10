@@ -10,6 +10,10 @@
 (defvar orgzly-int-org-inbox-file "~/Documents/Notizen/Mobile.org")
 (defvar orgzly-int-org-journal-file "~/Documents/Notizen/Journal.org")
 
+(defun orgzly-int/set-timestamp (date)
+  (goto-char (org-entry-end-position))
+  (insert
+   (format "\nEntered on %s" date)))
 
 (defun orgzly-int/org-refile-to-datetree (&optional file)
   "Refile current subtree to a datetree in FILE corresponding to it's timestamp.
@@ -25,6 +29,8 @@ is nil, refile in the current file."
                             (org-entry-get nil "TIMESTAMP_IA" t)
                             (org-read-date t nil "now")))
          (date (org-date-to-gregorian datetree-date)))
+    (and (org-entry-delete nil "CREATED")
+         (orgzly-int/set-timestamp datetree-date))
     (org-refile nil nil (list nil (buffer-file-name file) nil
                               (with-current-buffer file
                                 (save-excursion
