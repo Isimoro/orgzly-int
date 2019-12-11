@@ -1,4 +1,4 @@
-;; orgzly-int.el
+;; orgzly-int.el --- orgzly integration
 
 ;;; Commentary:
 
